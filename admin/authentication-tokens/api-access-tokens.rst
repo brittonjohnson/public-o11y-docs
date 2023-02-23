@@ -54,8 +54,11 @@ These API requests require a user API access token created by an administrator.
   * - Integration
     - Create, update, delete, or validate an integration
 
+  * -Session Token
+    -  Rotate an org token secret (cannot used an ORG token to do this, only a personal session token from the admin rotating it: https://dev.splunk.com/observability/reference/api/sessiontokens/latest#endpoint-create-session-token)
+    
   * - Org token
-    - Create, update, or delete an org (access) token, or rotate an org token secret
+    - Create, update, or delete an org (access) token,
 
   * - Dashboards and dashboard groups
     - Change or remove write permissions for a user other than yourself
