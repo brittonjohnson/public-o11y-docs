@@ -25,7 +25,7 @@ When instrumenting single-page applications with server-side rendering (SSR) sup
 Get single-page applications data in
 ========================================================
 
-The following sections describe how to enable the instrumentation for several different SPA frameworks.
+The following sections describe how to activate the instrumentation for several different SPA frameworks.
 
 Next.js
 --------------------------------------------------------
@@ -41,14 +41,14 @@ To instrument a Next.js SPA using the Browser RUM agent, follow these steps:
       import SplunkRum from '@splunk/otel-web';
       
       SplunkRum.init({
-         beaconUrl: 'https://rum-ingest.<realm>.signalfx.com/v1/rum',
-         rumAuth: '<your_rum_token>',
-         app: '<your_application_name>',
+         realm: '<realm>',
+         rumAccessToken: '<your_rum_token>',
+         applicationName: '<your_application_name>',
          version: '<your_app_version>',
-         environment: '<your_environment_name>'
+         deploymentEnvironment: '<your_environment_name>'
       });
 
-   * In the beacon URL, ``realm`` is the Observability Cloud realm, for example, ``us0``. See :new-page:`Realms in endpoints <https://dev.splunk.com/observability/docs/realms_in_endpoints>`.
+   * ``realm`` is the Splunk Observability Cloud realm, for example, ``us0``. See :new-page:`Realms in endpoints <https://dev.splunk.com/observability/docs/realms_in_endpoints>`.
    * To generate a RUM access token, see :ref:`rum-access-token`.
 
 3. Add the following code to the ``next.config.js`` file:
@@ -117,7 +117,7 @@ To instrument a Gatsby SPA using the Browser RUM agent, follow these steps:
    .. code-block:: javascript
 
       /**
-      * Implement Gatsby's Browser APIs in this file.
+      * Implement Gatsby Browser APIs in this file.
       *
       * See: https://www.gatsbyjs.com/docs/browser-apis/
       */
@@ -125,14 +125,14 @@ To instrument a Gatsby SPA using the Browser RUM agent, follow these steps:
       import SplunkRum from '@splunk/otel-web';
       
       SplunkRum.init({
-         beaconUrl: 'https://rum-ingest.<realm>.signalfx.com/v1/rum',
-         rumAuth: '<your_rum_token>',
-         app: '<your_application_name>',
+         realm: '<realm>',
+         rumAccessToken: '<your_rum_token>',
+         applicationName: '<your_application_name>',
          version: '<your_app_version>',
-         environment: '<your_environment_name>'
+         deploymentEnvironment: '<your_environment_name>'
       });
 
-   * In the beacon URL, ``realm`` is the Observability Cloud realm, for example, ``us0``. See :new-page:`Realms in endpoints <https://dev.splunk.com/observability/docs/realms_in_endpoints>`.
+   * ``realm`` is the Splunk Observability Cloud realm, for example, ``us0``. See :new-page:`Realms in endpoints <https://dev.splunk.com/observability/docs/realms_in_endpoints>`.
    * To generate a RUM access token, see :ref:`rum-access-token`.
 
 Nuxt.js v2 and v3
@@ -149,14 +149,14 @@ To instrument a Nuxt.js v2 SPA using the Browser RUM agent, follow these steps:
       import SplunkRum from '@splunk/otel-web';
       
       SplunkRum.init({
-         beaconUrl: 'https://rum-ingest.<realm>.signalfx.com/v1/rum',
-         rumAuth: '<your_rum_token>',
-         app: '<your_application_name>',
+         realm: '<realm>',
+         rumAccessToken: '<your_rum_token>',
+         applicationName: '<your_application_name>',
          version: '<your_app_version>',
-         environment: '<your_environment_name>'
+         deploymentEnvironment: '<your_environment_name>'
       });
 
-   * In the beacon URL, ``realm`` is the Observability Cloud realm, for example, ``us0``. See :new-page:`Realms in endpoints <https://dev.splunk.com/observability/docs/realms_in_endpoints>`.
+   * ``realm`` is the Splunk Observability Cloud realm, for example, ``us0``. See :new-page:`Realms in endpoints <https://dev.splunk.com/observability/docs/realms_in_endpoints>`.
    * To generate a RUM access token, see :ref:`rum-access-token`.
 
    .. note:: The ``.client.js`` suffix in the file name instructs Nuxt to load the plugin only in the client side.
@@ -187,11 +187,11 @@ To instrument an Angular Universal SPA using the Browser RUM agent, follow these
       import SplunkRum from '@splunk/otel-web';
       
       SplunkRum.init({
-         beaconUrl: 'https://rum-ingest.<realm>.signalfx.com/v1/rum',
-         rumAuth: '<your_rum_token>',
-         app: '<your_application_name>',
+         realm: '<realm>',
+         rumAccessToken: '<your_rum_token>',
+         applicationName: '<your_application_name>',
          version: '<your_app_version>',
-         environment: '<your_environment_name>'
+         deploymentEnvironment: '<your_environment_name>'
       });
 
 3. Edit the ``src/main.ts`` file to import the ``splunk-rum`` file you've created:
@@ -294,20 +294,20 @@ To add child spans to the generated spans, use the Context API. For example:
       const span = tracer.startSpan('process form');
       await context.with(trace.setSpan(context.active(), span), async () => {
          
-         await client.send(form); // client.send would create a XHR span via instrumentation
+         await client.send(form); // client.send would create a XHR span using instrumentation
 
       });
       span.end();
    }
 
-.. note:: Context might not propagate to child spans that aren't called directly, for example inside a ``Promise.then, setTimeout, ...`` block. To mitigate this issue, enable asynchronous tracing. See :ref:`browser-rum-async-traces`.
+.. note:: Context might not propagate to child spans that aren't called directly, for example inside a ``Promise.then, setTimeout, ...`` block. To mitigate this issue, activate asynchronous tracing. See :ref:`browser-rum-async-traces`.
 
 .. _rum-browser-spa-errors:
 
 Collect errors with single-page application frameworks
 ========================================================
 
-To enable the collection of JavaScript errors from single-page application (SPA) frameworks using their own error interceptors or handlers, you need to integrate the Browser RUM agent with the framework.
+To activate the collection of JavaScript errors from single-page application (SPA) frameworks using their own error interceptors or handlers, you need to integrate the Browser RUM agent with the framework.
 
 The following framework-specific examples show how to integrate the Browser RUM agent with the supported frameworks. All the examples assume that you installed the Browser RUM agent using npm. See :ref:`rum-browser-install-npm`.
 

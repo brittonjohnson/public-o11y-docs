@@ -15,19 +15,26 @@ To instrument your Android application and get data into Splunk RUM, follow the 
 
 .. _android-rum-requirements:
 
+
+
+Decide which version to run in your environment
+=======================================================
+Latest updates automatically whenever Splunk RUM releases a new version. In pre-production, use latest to try out the most recent version of Splunk RUM. In production environments, use the pinned version which was previously tested in pre-production and update the production version on a monthly cycle.  
+
+
 Check compatibility and requirements 
 ===============================================
 
-Splunk RUM for Mobile supports Java and Kotlin applications for Android API Level 21 and higher. API levels 21 to 25 require core library desugaring enabled. See :ref:`enable-desugaring`.
+Splunk RUM for Mobile supports Java and Kotlin applications for Android API Level 21 and higher. API levels 21 to 25 require core library desugaring activated. See :ref:`enable-desugaring`.
 
 .. _enable-desugaring:
 
-Enable desugaring in your application
+Activate desugaring in your application
 -----------------------------------------------
 
-To instrument applications that run on Android API levels 21 to 25, you must enable desugaring. 
+To instrument applications that run on Android API levels 21 to 25, you must activate desugaring. 
 
-To enable desugaring in your application, open the ``build.gradle`` file for your app module and update the ``compileOptions`` and ``dependencies`` sections as in the following examples:
+To activate desugaring in your application, open the build.gradle file for your app module and update the ``compileOptions`` and ``dependencies`` sections as in the following examples:
 
 .. tabs::
 
@@ -76,11 +83,11 @@ Save and sync your project to implement desaguring in your application.
 Install the Android agent as a dependency
 ========================================================
 
-To enable the agent, you must install the Android RUM agent as a code-level dependency in your Android application.
+To activate the agent, you must install the Android RUM agent as a code-level dependency in your Android application.
 
 Follow these steps to install the Android RUM agent using Maven Central:
 
-1. Make sure Maven Central is in the repositories section of your main ``build.gradle`` file:
+1. Make sure Maven Central is in the repositories section of your main build.gradle file:
 
    .. code-block:: kotlin
 
@@ -92,7 +99,7 @@ Follow these steps to install the Android RUM agent using Maven Central:
          }
       }
 
-2. Add the latest Android RUM agent release as a dependency in the ``build.gradle`` file of your application:
+2. Add the latest Android RUM agent release as a dependency in the build.gradle file of your application:
 
    .. tabs::
 
@@ -143,15 +150,15 @@ Follow these steps to install the Android RUM agent using Maven Central:
                               .put(StandardAttributes.APP_VERSION, "<version_of_app>")
                               .build()
                      )
-                     // Enables debug logging if needed
+                     // Activates debug logging if needed
                      //.enableDebug()
                      .build(this);
          }
       }
 
-   * The value passed to ``.realm()`` is the Observability Cloud realm, for example, ``us0``. To find the realm name of your account, follow these steps: 
+   * The value passed to ``.realm()`` is the Splunk Observability Cloud realm, for example, ``us0``. To find the realm name of your account, follow these steps: 
 
-         1. Open the left navigation menu in Observability Cloud.
+         1. Open the navigation menu in Splunk Observability Cloud.
          2. Select :menuselection:`Settings`.
          3. Select your username. 
 
@@ -196,7 +203,7 @@ To download and build the Android RUM library locally, follow these steps:
 
       ./gradlew publishToMavenLocal
 
-3. Make sure to set ``mavenLocal()`` as the repository in your ``build.gradle`` file:
+3. Make sure to set ``mavenLocal()`` as the repository in your build.gradle file:
 
    .. code:: kotlin
 
@@ -208,7 +215,7 @@ To download and build the Android RUM library locally, follow these steps:
          }
       }
 
-4. Add the library you've built as a dependency in the ``build.gradle`` file:
+4. Add the library you've built as a dependency in the build.gradle file:
 
    .. code:: kotlin
 

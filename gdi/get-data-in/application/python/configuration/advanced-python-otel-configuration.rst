@@ -5,11 +5,11 @@ Configure the Python agent for Splunk Observability Cloud
 ********************************************************************
 
 .. meta:: 
-   :description: Configure the agent of the Splunk Distribution of OpenTelemetry Python to suit most of your instrumentation needs, like correlating traces with logs, enabling exporters, and more.
+   :description: Configure the agent of the Splunk Distribution of OpenTelemetry Python to suit most of your instrumentation needs, like correlating traces with logs, activating exporters, and more.
 
 You can configure the Python agent from the Splunk Distribution of OpenTelemetry Python to suit your instrumentation needs. In most cases, modifying the basic configuration is enough to get started.
 
-The following sections describe all available settings for configuring the Python agent, including options for enabling new features that are unique to the Splunk Distribution of OpenTelemetry Python.
+The following sections describe all available settings for configuring the Python agent, including options for activating new features that are unique to the Splunk Distribution of OpenTelemetry Python.
 
 .. _main-python-agent-settings:
 
@@ -24,9 +24,9 @@ The following settings are specific to the Splunk Distribution of OpenTelemetry 
    * - Environment variable
      - Description
    * - ``SPLUNK_ACCESS_TOKEN``
-     - A Splunk authentication token that lets exporters send data directly to Splunk Observability Cloud. Unset by default. Not required unless you need to send data to the Observability Cloud ingest endpoint. See :ref:`admin-tokens`.
+     - A Splunk authentication token that lets exporters send data directly to Splunk Observability Cloud. Unset by default. Not required unless you need to send data to the Splunk Observability Cloud ingest endpoint. See :ref:`admin-tokens`.
    * - ``SPLUNK_TRACE_RESPONSE_HEADER_ENABLED``
-     - Enables the addition of server trace information to HTTP response headers. For more information, see :ref:`server-trace-information-python`. The default value is ``true``.
+     - Activates the addition of server trace information to HTTP response headers. For more information, see :ref:`server-trace-information-python`. The default value is ``true``.
 
 .. _trace-configuration-python:
 
@@ -41,7 +41,7 @@ The following settings control tracing limits and attributes:
    * - Environment variable
      - Description
    * - ``OTEL_TRACE_ENABLED``
-     - Enables tracer creation and autoinstrumentation. The default value is ``true``.
+     - Activates tracer creation and autoinstrumentation. The default value is ``true``.
    * - ``OTEL_SERVICE_NAME``
      - Name of the service or application you're instrumenting. Takes precedence over the service name defined in the ``OTEL_RESOURCE_ATTRIBUTES`` variable.
    * - ``OTEL_RESOURCE_ATTRIBUTES``
@@ -78,7 +78,7 @@ The following settings control trace exporters and their endpoints:
    * - ``OTEL_EXPORTER_JAEGER_ENDPOINT``
      - The Jaeger endpoint. The default value is ``http://localhost:9080/v1/trace``.
 
-The Splunk Distribution of OpenTelemetry Python uses the OTLP gRPC span exporter by default. If you're still using the Smart Agent (now deprecated), or if you want to send traces directly to the Observability Cloud ingest endpoint, use the Jaeger exporter.
+The Splunk Distribution of OpenTelemetry Python uses the OTLP gRPC span exporter by default. If you're still using the Smart Agent (now deprecated), or if you want to send traces directly to the Splunk Observability Cloud ingest endpoint, use the Jaeger exporter.
 
 .. _trace-propagation-configuration-python:
 
@@ -112,26 +112,16 @@ For backward compatibility with the SignalFx Python Tracing Library, use the b3m
 Server trace information
 ==============================================
 
-To connect Real User Monitoring (RUM) requests from mobile and web applications with server trace data, enable Splunk trace response headers by setting the following environment variable: 
-
-.. tabs::
-
-   .. code-tab:: shell Linux
-   
-      export SPLUNK_TRACE_RESPONSE_HEADER_ENABLED=true
-   
-   .. code-tab:: shell Windows PowerShell
-
-      $env:SPLUNK_TRACE_RESPONSE_HEADER_ENABLED=true
-
-When you set this environment variable, your application instrumentation adds the following response headers to HTTP responses.
+To connect Real User Monitoring (RUM) requests from mobile and web applications with server trace data, trace response headers are activated by default. The instrumentation adds the following response headers to HTTP responses:
 
 .. code-block::
 
-   Access-Control-Expose-Headers: Server-Timing
+   Access-Control-Expose-Headers: Server-Timing 
    Server-Timing: traceparent;desc="00-<serverTraceId>-<serverSpanId>-01"
 
-The ``Server-Timing`` header contains the ``traceId`` and ``spanId`` in ``traceparent`` format. For more information, see the Server-Timing and traceparent documentation on the W3C website.
+The ``Server-Timing`` header contains the ``traceId`` and ``spanId`` parameters in ``traceparent`` format. For more information, see the Server-Timing and traceparent documentation on the W3C website.
+
+.. note:: If you need to deactivate trace response headers, set ``SPLUNK_TRACE_RESPONSE_HEADER_ENABLED`` to ``false``.
 
 .. _code-configuration-python:
 
@@ -149,7 +139,7 @@ The following example shows how all the configuration options you can pass to ``
 
    start_tracing(
       service_name='my-python-service',
-      span_exporter_factories=[OTLPSpanExporter]
+      span_exporter_factories=[OTLPSpanExporter],
       access_token='',
       max_attr_length=1200,
       trace_response_header_enabled=True,

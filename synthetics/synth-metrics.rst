@@ -79,10 +79,10 @@ Performance metrics capture information about how long it takes resources on the
      - Time until the page and all of its subresources are ready
 
    * - First CPU idle
-     - Time until the page is minimally interactive and will respond to user input in a reasonable amount of time. See :new-page:`What Interactivity Metrics Does Rigor Offer? <https://help.rigor.com/hc/en-us/articles/360011039573>` to learn more about how this metric is calculated. 
+     - Time until the page is minimally interactive and will respond to user input in a reasonable amount of time. See "What Interactivity Metrics Does Rigor Offer?" in the Rigor documentation to learn more about how this metric is calculated. 
 
    * - Time to interactive
-     - Time until the page is first expected to be usable and will respond to user input quickly. See :new-page:`What Interactivity Metrics Does Rigor Offer? <https://help.rigor.com/hc/en-us/articles/360011039573>` to learn more about how this metric is calculated. 
+     - Time until the page is first expected to be usable and will respond to user input quickly. See "What Interactivity Metrics Does Rigor Offer?" in the Rigor documentation to learn more about how this metric is calculated. 
      
    * - Onload time
      - Time until the page has loaded. This corresponds to the browser load event.
@@ -177,7 +177,7 @@ Resource and error count metrics capture information about the number and types 
 
 Content size metrics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Content size metrics capture information about the size of resources on a page. Content sizes are calculated using the transfer size (or on-the-wire size) of each request.
+Content size metrics capture information about the size of resources on a page. Content sizes are calculated using the transfer size (or on-the-wire size) of each request. All sizes in the following table is measured in bytes. 
 
 .. list-table::
    :header-rows: 1
@@ -187,28 +187,28 @@ Content size metrics capture information about the size of resources on a page. 
      - :strong:`Description`
    
    * - Content size
-     - Total size (in bytes) of all content loaded. This is equivalent to the total sum of all resource type sizes (HTML, image, JavaScript, CSS, video, font and other sizes).
+     - Total size of all content loaded. This is equivalent to the total sum of all resource type sizes (HTML, image, JavaScript, CSS, video, font and other sizes).
 
    * - HTML size
-     - Total size (in bytes) of all HTML content loaded
+     - Total size of all HTML content loaded
 
    * - Image size
-     - Total size (in bytes) of all image content loaded
+     - Total size of all image content loaded
 
    * - JavaScript size
-     - Total size (in bytes) of all JavaScript content loaded
+     - Total size of all JavaScript content loaded
 
    * - CSS size
-     - Total size (in bytes) of all CSS content loaded
+     - Total size of all CSS content loaded
 
    * - Video size
-     - Total size (in bytes) of all video content loaded
+     - Total size of all video content loaded
 
    * - Font size
-     - Total size (in bytes) of all font content loaded
+     - Total size of all font content loaded
      
    * - Other size
-     - Total size (in bytes) of all other resources that are not HTML, image, JavaScript, CSS, video, or font requests
+     - Total size of all other resources that are not HTML, image, JavaScript, CSS, video, or font requests
  
 
 Web vitals

@@ -1,5 +1,3 @@
-.. include:: /_includes/incident_intelligence/incident-intelligence-preview-header.rst
-
 .. _ii-whos-on-call:
 
 Check who's currently on call
@@ -22,6 +20,4 @@ You can also view who's on call in :guilabel:`Incident Management`. To do so, fo
 See also
 ============
 
-* :ref:`ii-create-manage-on-call-schedules`
-* :ref:`ii-schedule-scenarios`
 * :ref:`ii-sync-on-call-schedule`

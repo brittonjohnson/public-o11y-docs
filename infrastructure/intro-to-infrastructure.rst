@@ -12,6 +12,19 @@ Gain insights into and perform powerful, capable analytics on your infrastructur
 
 
 ==========================================================
+Splunk Infrastructure Monitoring hierarchy
+==========================================================
+
+The following diagram gives you an overview of the different components and their hierarchical relationship in Splunk Infrastructure Monitoring.
+
+..  image:: /_images/infrastructure/imm-hierarchy.png
+    :width: 80%
+    :alt: This image describes the hierarchy in Splunk Infrastructure Monitoring.
+
+Metrics are the driving components for Splunk Infrastructure Monitoring. To learn more about metrics, see :ref:`get-started-metrics`.
+
+
+==========================================================
 Get started with Splunk Infrastructure Monitoring
 ==========================================================
 
@@ -63,4 +76,4 @@ Explore all you can do with Splunk Infrastructure Monitoring:
 
 For a set of interactive walkthroughs of Splunk Infrastructure Monitoring, see :new-page:`Splunk Infrastructure Monitoring scenarios <https://bossofopsando11y.com/imt/>`.
 
-For an overview of an end-to-end experience, read :ref:`get-started-use-case`.
+For an overview of an end-to-end experience, see :ref:`get-started-scenario`.

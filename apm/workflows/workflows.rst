@@ -16,6 +16,13 @@ Correlate traces to track Business Workflows
    example-business-workflow
    workflow-alerts
 
+|hr|
+
+:strong:`Available in Enterprise Edition`
+
+|hr|
+
+
 Business Workflows generate Monitoring and Troubleshooting MetricSets for traces that fit Business Workflow rules. You can configure Business Workflow rules to group logically-related traces by services or global tags, or monitor performance indicators on transactions with dashboards and alerts.
 
 You can also filter your Troubleshooting view to display only transactions for specific Business Workflows.
@@ -32,6 +39,6 @@ Follow these steps to configure Business Workflow rules to track related traces 
 
 4. Save your changes to the workflow rule set.
 
-For more information about configuring and managing rules, see :ref:`apm-create-workflow-rule`. See :ref:`apm-example-business-workflow` for an example configuration. See :ref:`configure-business-workflows` for a use case involving Business Workflows. 
+For more information about configuring and managing rules, see :ref:`apm-create-workflow-rule`. See :ref:`apm-example-business-workflow` for an example configuration. See :ref:`configure-business-workflows` for a scenario involving Business Workflows. 
 
-For examples of monitoring and troubleshooting using Business Workflows, see :ref:`apm-use-cases-intro`.
+For examples of monitoring and troubleshooting using Business Workflows, see :ref:`apm-scenarios-intro`.

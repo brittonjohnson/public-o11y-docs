@@ -16,10 +16,10 @@ Generate customized instructions using the guided setup
 
 To generate all the basic installation commands for your environment and application, use the PHP guided setup. To access the PHP guided setup, follow these steps:
 
-#. Log in to Observability Cloud.
+#. Log in to Splunk Observability Cloud.
 #. Open the :new-page:`PHP guided setup <https://login.signalfx.com/#/gdi/scripted/php-tracing/step-1?category=product-apm&gdiState=%7B"integrationId":"php-tracing"%7D>`. Optionally, you can navigate to the guided setup on your own:
 
-   #. In the left navigation menu, select :menuselection:`Data Management`. 
+   #. In the navigation menu, select :menuselection:`Data Management`. 
 
    #. Select :guilabel:`Add Integration` to open the :guilabel:`Integrate Your Data` page.
 
@@ -29,10 +29,18 @@ To generate all the basic installation commands for your environment and applica
 
    #. Select the :guilabel:`PHP` tile to open the PHP guided setup.
 
+Install the SignalFx Tracing Library for PHP manually
+==================================================================
+
+Follow these instructions to install the SignalFx Tracing Library for PHP:
+
+- :ref:`install-php-instrumentation`
+- :ref:`configure-otel-dotnet`
+
 .. _install-php-instrumentation:
 
 Instrument a PHP application
-===================================================================
+------------------------------------------
 
 Follow these steps to automatically instrument your application:
 
@@ -83,7 +91,7 @@ Follow these steps to automatically instrument your application:
 .. _php-ini-config:
 
 INI file settings
--------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you don't set any environment variable, the library extracts default values from the INI file. The prefix for settings defined using environment variables that start with ``SIGNALFX_TRACE_`` is ``signalfx.trace.``. For all other environment variables that start with ``SIGNALFX_`` the prefix is ``signalfx.``.
 
@@ -95,10 +103,43 @@ You can use the ``signalfx-setup.php`` script to set INI file options without ha
    
 This is useful for options common to all PHP services running in the system, like endpoints.
 
+.. _docker_php:
+
+Deploy the PHP instrumentation in Docker
+-----------------------------------------------
+
+You can deploy the PHP instrumentation using Docker. Follow these steps to get started:
+
+#. Create a startup shell script in a location Docker can access. The script can have any name, for example setup.sh.
+
+#. Edit the startup shell script to export the environment variables described in :ref:`install-php-instrumentation`.
+
+#. Add the following commands to the startup shell script to initialize the PHP instrumentation:
+
+   .. code-block:: shell
+
+      curl -LO https://github.com/signalfx/signalfx-php-tracing/releases/latest/download/signalfx-setup.php
+      php signalfx-setup.php --php-bin=all
+      php signalfx-setup.php --update-config --signalfx.endpoint_url=https://ingest.<realm>.signalfx.com/v2/trace/signalfxv1
+      php signalfx-setup.php --update-config --signalfx.access_token=<access_token>
+      php signalfx-setup.php --update-config --signalfx.service_name=<service-name>
+
+#. Add a line to the script to start the application using ``supervisorctl``, ``supervisord``, ``systemd``, or similar. The following example uses ``supervisorctl``:
+
+   .. code-block:: shell
+
+      supervisor start my-php-app
+
+#. Add a command to run the newly created shell script at the end of the Dockerfile.
+
+#. Rebuild the container using ``docker build``.
+
+.. caution:: Make sure to deactivate the ``Xdebug`` extension completely, as it's not compatible with the PHP instrumentation.
+
 .. _kubernetes_php:
 
 Deploy the PHP instrumentation in Kubernetes
-==========================================================
+-----------------------------------------------
 
 To deploy the PHP instrumentation in Kubernetes, configure the Kubernetes Downward API to expose environment variables to Kubernetes resources.
 
@@ -130,12 +171,12 @@ The following example shows how to update a deployment to expose environment var
 
 .. _export-directly-to-olly-cloud-php:
 
-Send data directly to Observability Cloud
-==============================================================
+Send data directly to Splunk Observability Cloud
+---------------------------------------------------
 
 By default, all telemetry is sent to the local instance of the Splunk Distribution of OpenTelemetry Collector.
 
-To bypass the OTel Collector and send data directly to Observability Cloud, set the following environment variables:
+To bypass the OTel Collector and send data directly to Splunk Observability Cloud, set the following environment variables:
 
 .. tabs::
 
@@ -151,9 +192,9 @@ To bypass the OTel Collector and send data directly to Observability Cloud, set 
 
 To obtain an access token, see :ref:`admin-api-access-tokens`.
 
-In the ingest endpoint URL, ``realm`` is the Observability Cloud realm, for example, ``us0``. To find the realm name of your account, follow these steps: 
+In the ingest endpoint URL, ``realm`` is the Splunk Observability Cloud realm, for example, ``us0``. To find the realm name of your account, follow these steps: 
 
-#. Open the left navigation menu in Observability Cloud.
+#. Open the navigation menu in Splunk Observability Cloud.
 #. Select :menuselection:`Settings`.
 #. Select your username. 
 

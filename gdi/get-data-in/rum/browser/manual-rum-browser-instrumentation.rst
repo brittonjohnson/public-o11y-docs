@@ -116,9 +116,9 @@ Add identification metadata during initialization
    <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
    <script>
    SplunkRum.init({
-      beaconUrl: 'https://rum-ingest.<realm>.signalfx.com/v1/rum',
-      rumAuth: '<RUM access token>',
-      app: '<application-name>',
+      realm: '<realm>',
+      rumAccessToken: '<RUM access token>',
+      applicationName: '<application-name>',
       globalAttributes: {
          // The following data is already available
          'enduser.id': 42,
@@ -215,7 +215,7 @@ The following snippet shows how to create a workflow span:
    // Time passes
    span.end();
 
-To enable error collection for workflow spans, add the ``error`` and ``error.message`` attributes:
+To activate error collection for workflow spans, add the ``error`` and ``error.message`` attributes:
 
 .. code-block:: javascript
    :emphasize-lines: 8,9

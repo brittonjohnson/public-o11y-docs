@@ -13,8 +13,8 @@ Available host and application monitors
 
   Caches and memory TOGGLE <caches-memory>
   Cloud platforms TOGGLE <cloud>
-  cloudfoundry-firehose-nozzle/cloudfoundry-firehose-nozzle
-  conviva/conviva
+  monitors-cloudfoundry/cloudfoundry-firehose-nozzle
+  monitors-conviva/conviva
   Databases TOGGLE <databases>
   GitLab TOGGLE <gitlab-monitors>
   Hosts and servers TOGGLE <hosts-servers>
@@ -24,14 +24,14 @@ Available host and application monitors
   Networks TOGGLE <network>
   Orchestration TOGGLE <orchestration>
 
-You can configure an application receiver to gather metrics from its associated application and the host the application is running on.
+.. note:: The SignalFx Smart Agent has reached End of Support. While the agent can capture and export telemetry to Splunk Observability Cloud, Splunk no longer provides any support, feature updates, security, or bug fixes. Such requests are not bound by any SLAs.
 
-To find a receiver for your application, see the alphabetical listing of receivers on this page, or use the menu to browse for receivers by application category.
+  Note that this only affects the agent; Smart Agent application receivers are available and supported through the Splunk Distribution of OpenTelemetry Collector. Native OTel receivers are supported as well.
 
-Receiver functionality is also provided in the form of SignalFx Smart Agent monitors. Configuration options for both the Splunk Distribution of OpenTelemetry Collector receivers and Smart Agent monitors is available.
+To find a receiver for your application, see the alphabetical listing of receivers on this page, or use the menu to browse for receivers by application category. 
 
-.. note:: The SignalFx Smart Agent is deprecated and will reach end of support on June 30th, 2023. Note that this only affects the agent; Smart Agent receivers bundled in the Splunk Open Telemetry Collector are not deprecated. For more details, see the :new-page:`Deprecation Notice <https://github.com/signalfx/signalfx-agent/blob/main/docs/smartagent-deprecation-notice.md>`.
+If available, using native components instead of Smart Agent application receivers is the best practice. To see native OpenTelemetry receivers, refer to :ref:`otel-components`. 
 
-.. using an include for this table because it also appears on gdi/get-start-in/integrations.rst
+For Smart Agent application receivers and monitors, you can use the :ref:`Splunk Distribution of OpenTelemetry Collector <otel-intro>` with the :ref:`Smart Agent receiver <smartagent-receiver>`, a native OTel component, to send data to Splunk Observability Cloud.
 
 .. include:: /_includes/application-receiver-table.rst
