@@ -4,6 +4,22 @@
 Install and configure the SignalFx Smart Agent
 *******************************************************************
 
+So, unfortunately, this doc is somewhat confusing.
+
+Under fstype - The filesystem types to include/exclude. This is an overridable set (https://docs.splunk.com/observability/en/gdi/smart-agent/smart-agent-resources.html#filtering-smart-agent)
+
+If this is not set, the default value is the set of all non-logical/virtual filesystems on the system.
+
+On Linux, this list is determined by reading the /proc/filesystems file and choosing the filesystems that do not have the nodev modifier.
+
+So you can configure specific filesystem types, OR it will list "all" of the filesystems listed in the /proc/filesystems path.
+
+You can add the nodev modifier to the ones that you don't want to show.
+
+There is currently no way to do like "include:X" or "exclude:Y", unfortunately.
+
+You either have to specifically specify what you want to show or it will show everything unless you configure it with your system's proc file.
+
 .. meta::
    :description: The SignalFx Smart Agent provides automatic service discovery, configuration, and metrics collection for a variety of environments. The Smart Agent is deprecated as part of the release of Splunk Observability Cloud.
 
