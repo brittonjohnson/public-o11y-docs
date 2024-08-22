@@ -26,6 +26,10 @@ Ensure you have supported Ruby and library versions
 
 .. _ruby-otel-connector-requirement:
 
+Can we add the commands here to check and see what version of Ruby the customer is currently running? This has been an issue with a handful of customers opening tickets about this issue.
+
+Something like: You can check the version of Ruby you are running by running $ ruby -v or $ ruby --version to see if your version is currently compatible.
+
 Install and configure the Splunk OpenTelemetry Collector
 ==============================================================
 
